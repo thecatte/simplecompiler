@@ -1101,17 +1101,44 @@ console.log('\n');
 var source = `function pair(x: number, y: number): array<number> {
     return [x, y];
 }
-
 function print_string(text: string, length: number): void {
     for(var i = 0; i != length; i = i + 1;) {
         putchar(text[i]);
     }
 }
+function check_bools(b1: bool, b2: bool): bool {
+    if(b1) {
+        if(b2) {
+            return true;
+        } else {
+            return false;
+        }
+    } else {
+        return false;
+    }
+}
+function factorial(n) {
+    if (n == 0) {
+      return 1;
+    } else {
+      return n * factorial(n - 1);
+    }
+  }
 function main(){
     var arr = pair(65, 66);
+    var firstElement = arr[0];
+
     var text = "to jest test 123";
     var length = 16;
     print_string(text, length);
+
+    if (length != 16) {
+        print_string("lt or gt 16", 11);
+    } else {
+        print_string("eq to 16", 8);
+    }
+
+    var factorialOfFive = factorial(5);
 }`;
 
 parser.parseStringToCompletion(source).visit(new TypeChecker(new Map(),
